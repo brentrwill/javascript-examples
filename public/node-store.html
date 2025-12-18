@@ -1,0 +1,45 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>Node Store</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>Node) Map-backed store: POST /api/store and GET /api/store/:key</h2>
+<p><strong>Server:</strong> keeps a <code>Map</code> in memory (it resets when server restarts).</p>
+<ul>
+  <li><code>POST /api/store</code> saves <code>{key, value}</code>.</li>
+  <li><code>GET /api/store/:key</code> fetches it (404 if missing).</li>
+</ul>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+  <input id="key" placeholder="key"/>
+  <input id="val" placeholder="value"/>
+  <button id="save">Save</button>
+</div>
+<hr/>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+  <input id="getkey" placeholder="key to get"/>
+  <button id="get">Get</button>
+</div>
+
+<pre id="out" style="background:#f6f6f6;padding:12px;"></pre>
+
+<script>
+const out = document.getElementById("out");
+
+document.getElementById("save").addEventListener("click", async () => {
+  const key = document.getElementById("key").value;
+  const value = document.getElementById("val").value;
+  const res = await fetch("/api/store", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ key, value })
+  });
+  out.textContent = await res.text();
+});
+
+document.getElementById("get").addEventListener("click", async () => {
+  const key = document.getElementById("getkey").value;
+  const res = await fetch(`/api/store/${encodeURIComponent(key)}`);
+  out.textContent = await res.text();
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>

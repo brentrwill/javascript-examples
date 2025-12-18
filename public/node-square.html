@@ -1,0 +1,31 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>Node Square</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>Node) POST /api/square</h2>
+<p><strong>Client:</strong> sends a number to the server. <strong>Server:</strong> validates it and returns JSON with the squared value.</p>
+<ol>
+  <li>We call <code>fetch('/api/square')</code> with method POST.</li>
+  <li>The server reads <code>req.body.n</code>, converts to Number, checks for NaN.</li>
+  <li>The server responds with <code>{ n, squared }</code>.</li>
+</ol>
+
+<input id="n" type="number" placeholder="Number" />
+<button id="go">Square</button>
+<pre id="out" style="background:#f6f6f6;padding:12px;"></pre>
+
+<script>
+document.getElementById("go").addEventListener("click", async () => {
+  const n = document.getElementById("n").value;
+
+  // Sending URL-encoded form style data:
+  const res = await fetch("/api/square", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ n })
+  });
+
+  document.getElementById("out").textContent = await res.text();
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>

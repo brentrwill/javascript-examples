@@ -1,0 +1,30 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>UI 10 Modal</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>UI 10) Modal popup (open/close)</h2>
+<p><strong>What’s happening:</strong> we show a full-screen backdrop using <code>display:flex</code>. Clicking “Close” or the backdrop hides it again.</p>
+
+<button id="open">Open Modal</button>
+
+<div id="backdrop" style="
+  display:none; position:fixed; inset:0; background:rgba(0,0,0,.5);
+  align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:16px; border-radius:12px; width:min(360px,90vw);">
+    <h3 style="margin-top:0;">Modal Title</h3>
+    <p>This modal appears without reloading the page.</p>
+    <button id="close">Close</button>
+  </div>
+</div>
+
+<script>
+const backdrop = document.getElementById("backdrop");
+document.getElementById("open").addEventListener("click", () => backdrop.style.display = "flex");
+document.getElementById("close").addEventListener("click", () => backdrop.style.display = "none");
+
+// Close when clicking the dark area (not the inner card)
+backdrop.addEventListener("click", (e) => {
+  if (e.target === backdrop) backdrop.style.display = "none";
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>

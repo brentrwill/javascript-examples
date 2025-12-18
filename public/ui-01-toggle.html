@@ -1,0 +1,22 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>UI 01 Toggle</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>UI 01) Toggle show/hide</h2>
+<p><strong>What’s happening:</strong> clicking the button switches a paragraph between visible and hidden by updating <code>style.display</code>.</p>
+
+<button id="btn">Toggle Details</button>
+<p id="details">Here are some extra details you can hide/show.</p>
+
+<script>
+// 1) Grab elements from the page (DOM selection)
+const btn = document.getElementById("btn");
+const details = document.getElementById("details");
+
+// 2) Listen for a click event (user interaction)
+btn.addEventListener("click", () => {
+  // 3) Update UI by changing a style property
+  details.style.display = (details.style.display === "none") ? "block" : "none";
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>

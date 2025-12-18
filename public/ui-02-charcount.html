@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>UI 02 Char Counter</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>UI 02) Live character counter</h2>
+<p><strong>What’s happening:</strong> the <code>input</code> event fires every time the value changes, so we update the counter live.</p>
+
+<textarea id="msg" rows="4" style="width:min(520px,95vw);"></textarea>
+<p>Characters: <span id="count">0</span></p>
+
+<script>
+const msg = document.getElementById("msg");
+const count = document.getElementById("count");
+
+// Fires on typing, pasting, deleting, etc.
+msg.addEventListener("input", () => {
+  count.textContent = msg.value.length; // UI update
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>UI 09 Filter</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>UI 09) Filter a list as you type</h2>
+<p><strong>What’s happening:</strong> every keystroke filters items by toggling each item's <code>style.display</code>.</p>
+
+<input id="q" placeholder="Search..." />
+<ul id="list">
+  <li>Apple</li><li>Banana</li><li>Orange</li><li>Mango</li><li>Grape</li>
+</ul>
+
+<script>
+const q = document.getElementById("q");
+const items = [...document.querySelectorAll("#list li")];
+
+q.addEventListener("input", () => {
+  const term = q.value.toLowerCase();
+  items.forEach(li => {
+    const matches = li.textContent.toLowerCase().includes(term);
+    li.style.display = matches ? "list-item" : "none";
+  });
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>

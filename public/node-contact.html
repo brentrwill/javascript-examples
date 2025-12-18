@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>Node Contact</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>Node) Classic HTML Form → POST /contact</h2>
+<p><strong>What’s happening:</strong> This is the “old school” way: the browser posts the form and navigates to the server response page (no fetch).</p>
+<ul>
+  <li>The browser submits as <code>application/x-www-form-urlencoded</code>.</li>
+  <li>Express reads it via <code>express.urlencoded()</code>.</li>
+  <li>The server responds with an HTML page showing what you sent.</li>
+</ul>
+
+<form action="/contact" method="POST" style="display:grid; gap:8px; width:min(520px,95vw);">
+  <input name="name" placeholder="Name" />
+  <textarea name="message" placeholder="Message" rows="5"></textarea>
+  <button>Send</button>
+</form>
+<p><a href="/">Back</a></p>
+</body></html>

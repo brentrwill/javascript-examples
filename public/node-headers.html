@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/><title>Node Headers</title></head>
+<body style="font-family:system-ui;padding:16px;">
+<h2>Node) Custom response header: GET /api/with-header</h2>
+<p><strong>What’s happening:</strong> The server sets <code>X-App-Version</code>. The client reads it using <code>res.headers.get(...)</code>.</p>
+
+<button id="go">Fetch</button>
+<pre id="out" style="background:#f6f6f6;padding:12px;"></pre>
+
+<script>
+document.getElementById("go").addEventListener("click", async () => {
+  const res = await fetch("/api/with-header");
+  const version = res.headers.get("X-App-Version");
+  const body = await res.json();
+  document.getElementById("out").textContent = JSON.stringify({ version, body }, null, 2);
+});
+</script>
+<p><a href="/">Back</a></p>
+</body></html>
